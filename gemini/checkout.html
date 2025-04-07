@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+    <h1>Checkout</h1>
+    <div class="checkout-container">
+        <div class="user-details">
+            <h2>Your Information</h2>
+            <form id="checkout-form" action="process_order.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea><br><br>
+
+                <input type="hidden" id="order-data" name="order_data">
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <ul id="summary-items">
+                </ul>
+            <p id="summary-total">Total: </p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to fetch and display cart data
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_cart_data.php') // PHP script to retrieve cart data
+                .then(response => response.json())
+                .then(data => {
+                    const summaryItems = document.getElementById('summary-items');
+                    const summaryTotal = document.getElementById('summary-total');
+                    const orderDataInput = document.getElementById('order-data');
+                    let total = 0;
+
+                    if (data && data.items && data.items.length > 0) {
+                        let orderDetails = [];
+                        data.items.forEach(item => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${item.name} x <span class="math-inline">\{item\.quantity\} \- ₦</span>{item.price * item.quantity}`;
+                            summaryItems.appendChild(listItem);
+                            total += item.price * item.quantity;
+                            orderDetails.push({
+                                product_id: item.id, // Assuming your cart data has product IDs
+                                quantity: item.quantity,
+                                price: item.price
+                            });
+                        });
+                        summaryTotal.textContent = `Total: ₦${total}`;
+                        orderDataInput.value = JSON.stringify(orderDetails); // Send order details as JSON
+                    } else {
+                        summaryItems.innerHTML = '<p>Your cart is empty.</p>';
+                        document.querySelector('button[type="submit"]').disabled = true;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching cart data:', error);
+                    summaryItems.innerHTML = '<p>Error loading order summary.</p>';
+                    document.querySelector('button[type="submit"]').disabled = true;
+                });
+        });
+    </script>
+</body>
+</html>

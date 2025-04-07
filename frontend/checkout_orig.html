@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .order-summary {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .total {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Checkout</h2>
+
+  <form id="checkoutForm" method="POST" action="place_order.php">
+    <div class="form-group">
+      <label>Full Name:</label>
+      <input type="text" name="name" required>
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label>Delivery Address:</label>
+      <input type="text" name="address" required>
+    </div>
+
+    <input type="hidden" name="order_items" id="order_items_input">
+    <input type="hidden" name="total_price" id="total_price_input">
+
+    <div class="order-summary" id="orderSummary">
+      <p>No items in cart.</p>
+    </div>
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <script>
+    const orderSummaryDiv = document.getElementById("orderSummary");
+    const orderItemsInput = document.getElementById("order_items_input");
+    const totalPriceInput = document.getElementById("total_price_input");
+
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cartItems.length === 0) {
+      orderSummaryDiv.innerHTML = "<p>No items in cart.</p>";
+    } else {
+      let summaryHTML = "<h4>Order Summary:</h4><ul>";
+      let total = 0;
+
+      cartItems.forEach(item => {
+        summaryHTML += <li>${item.name} - ₦${parseFloat(item.price).toLocaleString()}</li>;
+        total += parseFloat(item.price);
+      });
+
+      summaryHTML += "</ul>";
+      summaryHTML += <p class="total">Total: ₦${total.toLocaleString()}</p>;
+      orderSummaryDiv.innerHTML = summaryHTML;
+
+      // Send to PHP
+      orderItemsInput.value = JSON.stringify(cartItems);
+      totalPriceInput.value = total.toFixed(2);
+    }
+  </script>
+</body>
+</html>

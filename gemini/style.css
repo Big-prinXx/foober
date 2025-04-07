@@ -1,0 +1,28 @@
+.checkout-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.user-details {
+    flex: 1;
+}
+
+.order-summary {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+.order-summary h2 {
+    margin-top: 0;
+}
+
+#summary-items {
+    list-style: none;
+    padding: 0;
+}
+
+#summary-items li {
+    margin-bottom: 5px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+ 
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><img src="c:\Users\HP\Pictures\FoodberLogo.jpg"alt="FoodberLogo" width= "100" height = "100"></div>
+            <div class="nav-links">
+               <button style="background-color: orangered; padding: 10px 10px; border-radius: 50%;"> <a href="C:\Users\HP\Documents\Ajoke\menu.html">Menu</a></button>
+                <button style="background-color: orangered; padding: 10px 10px; border-radius: 50%;"><a href="cart.html">Cart</a></button>
+               
+            </div>
+        </nav>
+    </header>
+<header>
+    <div class="checkout-container">
+        <h2>Delivery Address</h2>
+        <input type="text" placeholder="Enter delivery address">
+        <button class="location-btn">Use My Location</button>
+        <h2>Phone Number</h2>
+        <input type="number" placeholder="Enter Phone Number">
+
+        <h2>Order Summary</h2>
+        <div class="order-summary">
+            <ul id="order-list"></ul>
+            <h3> Total: <span id= "order-total">0.00</span></h3>
+        </div>
+</header>
+<header>
+        <h2>Payment Method</h2>
+        <select>
+            <option>Flutterwave</option>
+            <option>Paystack</option>
+            <option>Bank Transfer</option>
+            <option>Cash on Delivery</option>
+        </select>
+
+
+        <button class="place-order">Place Order</button>
+        <button class="edit-order">Edit Order</button>
+    </div>
+</header>
+</body>
+</html>

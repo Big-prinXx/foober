@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart_order.css">
+    <link rel="stylesheet" href="menuStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Dessert Menu</h1>
+        <a href="cart.php" id="cart-link" class="icons"><i class="fas fa-shopping-cart"></i><span id="cart-count">0</span></a>
+    </header>
+
+    <section class="categories">
+        <div class="category">
+            <li>
+                <ul><a href="menu.html">Menu</a></ul>
+                <ul><a href="fastfood.html">Fast Food</a></ul>
+                <ul><a href="dessert.html">Dessert</a></ul>
+                <ul><a href="africanfood.html">African food</a></ul>
+            </li>
+        </div>
+    </section>
+
+    <main id="food-list">
+        <div class="food-item">
+            <img src="../picture/ice2.jpg" alt="" class="home-item">
+            <h2>Vanilla ice cream</h2>
+            <p>Cold Stone</p>
+            <p>$5.99</p>
+            <button onclick="addToCart('burger-1212','Burger', 5.99)">Add To cart</button>
+        </div>
+
+        <div class="food-item">
+            <img src="../picture/iceCream.jpg" alt="">
+            <h2>Ice cream</h2>
+            <p>Cold Stone</p>
+            <p>$3.99</p>
+            <button onclick="addToCart('pizza-71','Pizza', 3.99)">Add to cart</button>
+        </div>
+    </main>
+    <script src="order.js"></script>
+</body>
+</html>

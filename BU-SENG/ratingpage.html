@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Your Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <img src="foober.jpg" alt="foober Logo">
+        </div>
+
+        <h2>Rate your order</h2>
+        <p>How was the food?</p>
+
+        <div class="rating-options">
+            <button class="emoji" onclick="redirectToFeedback('bad')" title="TERRIBLE">😖</button>
+            <button class="emoji" onclick="redirectToFeedback('bad')" title="BAD">😞</button>
+            <button class="emoji" onclick="redirectToFeedback('meh')" title="MEH">😐</button>
+            <button class="emoji" onclick="redirectToFeedback('good')" title="GOOD">😊</button>
+            <button class="emoji" onclick="redirectToFeedback('awesome')" title="AWESOME">😃</button>
+        </div>
+
+        <button class="continue-btn" onclick="redirectToFeedback()">Continue</button>
+    </div>
+
+    <script>
+        function redirectToFeedback(rating) {
+            if (rating === 'bad' || rating === 'meh') {
+                window.location.href = "feedback.html";
+            } else {
+                window.location.href = "review.html";
+            }
+        }
+    </script>
+
+</body>
+</html>

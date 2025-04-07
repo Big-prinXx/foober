@@ -1,0 +1,78 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #fffaf0;
+    margin: 0;
+    padding: 0;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #ff9800;
+    color: white;
+    font-size: 18px;
+}
+header a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px
+}
+header a:hover{
+    background-color: #bf360c;
+}
+header .icons{
+    padding: 10px;
+}
+
+main{
+    padding: 20px;
+}
+.food-item, #cart-items li{
+    border: 2px solid #ff9800;
+    background-color: #ffe0b2;
+    margin: 10px auto;
+    padding: 15px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.food-item img{
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+button{
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button:hover{
+    background-color: #e65100;
+}
+#cart-total{
+    font-size: 20px;
+    font-weight: bold;
+    color: #d84315;
+}
+#cart-item{
+    list-style: none;
+    padding: 0;
+}
+#cart-items li button{
+    background-color: #d84315;
+    margin-left: 10px;
+}
+#cart-items li button:hover{
+    background-color: #bf360c;
+}

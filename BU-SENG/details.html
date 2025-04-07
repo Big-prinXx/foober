@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Details</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="details-card">
+        <h2>Saved Details</h2>
+        <p><strong>First Name:</strong> <span id="savedFname"></span></p>
+        <p><strong>Last Name:</strong> <span id="savedLname"></span></p>
+        <p><strong>Email:</strong> <span id="savedEmail"></span></p>
+        <p><strong>Mobile:</strong> <span id="savedMobile"></span></p>
+        <p><strong>Address:</strong> <span id="savedAddress"></span></p>
+
+       <a href="userprofile.html"><button>Edit Again</button></a>
+    </div>
+
+    <script>
+        document.getElementById("savedFname").innerText = localStorage.getItem("fname");
+        document.getElementById("savedLname").innerText = localStorage.getItem("lname");
+        document.getElementById("savedEmail").innerText = localStorage.getItem("email");
+        document.getElementById("savedMobile").innerText = localStorage.getItem("mobile");
+        document.getElementById("savedAddress").innerText = localStorage.getItem("address");
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

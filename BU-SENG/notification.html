@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications UI</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.notifications-container {
+    background-color: white;
+    height:50vh;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 15px 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.tabs span {
+    cursor: pointer;
+    color: gray;
+}
+
+.tabs .active {
+    font-weight: bold;
+    color: #ff6600;
+}
+
+.tabs .count {
+    background-color: #ff6600;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    margin-left: 5px;
+}
+
+.actions {
+    font-size: 12px;
+}
+
+.actions a {
+    text-decoration: none;
+    color: #007bff;
+    margin-left: 10px;
+}
+
+.actions .clear {
+    color: red;
+}
+
+.notification {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.notification img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.content strong {
+    display: block;
+    font-size: 14px;
+}
+
+.content p {
+    margin: 2px 0;
+    font-size: 13px;
+    color: gray;
+}
+
+.time {
+    font-size: 12px;
+    color: gray;
+}
+
+.view-previous {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #ff6600;
+    margin-top: 10px;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <div class="notifications-container">
+        <h2>Notifications</h2>
+        <div class="tabs">
+            <span class="active">Today <span class="count">2</span></span>
+            <span>Previous</span>
+            <div class="actions">
+                <a href="#">✔ Mark as read</a>
+                <a href="#" class="clear">clear all</a>
+            </div>
+        </div>
+
+        <div class="notification">
+            <img src="foober.jpg" alt="User Image">
+            <div class="content">
+                <strong>Foober App</strong>
+                <p>Your order is processing! </p>
+            </div>
+            <span class="time">3 hr ago</span>
+        </div>
+
+        <div class="notification">
+            <img src="foober.jpg" alt="User Image">
+            <div class="content">
+                <strong>Foober App</strong>
+                <p>Your order is on it's way!</p>
+            </div>
+            <span class="time">2 hr ago</span>
+        </div>
+
+        <div id="notifications-container">
+            <p>loading notifications...</p>
+        </div>
+
+        <a href="#" class="view-previous">view previous notifications</a>
+    </div>
+
+    <script>
+        // Fetch notifications from PHP
+        function loadNotifications() {
+            fetch("user_notifications.php")
+            .then(response => response.json())
+            .then(data => {
+                let container = document.getElementById("notifications-container");
+                container.innerHTML = "";
+
+                if (data.status === "success" && data.notifications.length > 0) {
+                    data.notifications.forEach(notif => {
+                        let div = document.createElement("div");
+                        div.classList.add("notification");
+                        div.innerHTML = `<p>${notif.message}</p><small>${notif.created_at}</small>`;
+                        container.appendChild(div);
+                    });
+                } else {
+                    container.innerHTML = "<p>No notifications yet.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching notifications:", error);
+            });
+        }
+
+        // Load notifications when the page loads
+        window.onload = loadNotifications;
+    </script>
+
+</body>
+</html>

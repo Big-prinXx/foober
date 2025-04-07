@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+    }
+    .payment-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .info {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Payment Instructions</h2>
+    <p>Please transfer the total amount to the following bank account:</p>
+
+    <div class="info">
+      <p><strong>Bank:</strong> Zenith Bank</p>
+      <p><strong>Account Name:</strong> Sample Food App</p>
+      <p><strong>Account Number:</strong> 1234567890</p>
+      <p><strong>Total:</strong> <span id="total-amount">₦0.00</span></p>
+    </div>
+
+    <p>After completing the payment, kindly wait for admin approval.</p>
+
+    <button class="btn" onclick="redirectToMenu()">Back to Menu</button>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+    cart.forEach(item => {
+      total += parseFloat(item.price || 0);
+    });
+
+    document.getElementById("total-amount").textContent = `$${total.toFixed(2)}`;
+
+    function redirectToMenu() {
+      window.location.href = "menu.html";
+    }
+  </script>
+</body>
+</html>
